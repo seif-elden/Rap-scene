@@ -1,0 +1,9 @@
+body{
+    background-color: #f1c50e;
+    position: relative;
+}
+.f{
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,49 @@
+{% extends "main.html"%}
+{% load static %}
+
+{% block title%}
+Rap Scene - Meet
+{% endblock %}
+
+
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/meet.css' %}">
+
+{% endblock %}
+
+
+{% block body%}
+
+
+<div class="team-section" style="margin-bottom: 50px;">
+  <div class="inner-width">
+    <h2>Meet our team </h2>
+    <div class="pers">
+{% for m in our_team %}
+      <div class="pe">
+        <img src="/media/{{m.img}}" alt="rafeh">
+        <div class="p-name">{{m.name}}</div>
+        <div class="p-des">{{m.discription}} </div>
+        <div class="p-sm">
+        {% if m.facebook %}
+          <a href="{{m.facebook}}" target=_blank><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if m.instgram %}
+          <a href="{{m.instgram}}" target=_blank><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if m.youtube %}
+          <a href="{{m.youtube}}" target=_blank><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+        {% endif %}
+        {% if m.twitter %}
+          <a href="{{m.twitter}}" target=_blank><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        {% endif %}
+        </div>
+      </div>
+{% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

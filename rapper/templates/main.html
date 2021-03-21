@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
+    <title>
+        {% block title%}
+        {% endblock %}
+    </title>
+
+    {% block style%}
+    {% endblock %}
+</head>
+<body> 
+    <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+
+    {% include 'nav.html'%}
+
+    {% block body%} 
+    {% endblock %}
+    <!-- <div style="height: 200px;display: none;"  id="spa"></div> -->
+    <div style="height: 200px;"></div>
+
+    {% include 'footer.html'%}
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends "main.html"%}
+{% load static %}
+
+{% block title%}
+Rap Scene - {{result}}
+{% endblock %}
+
+
+{% block style%}
+{% endblock %}
+
+
+{% block body%}
+<div class="container" dir="rtl" style="margin-top: 40px;">
+    <img src="/media/{{result.img}}" style="float:left;margin:10px;width:300px;height:250px">
+    <div style="margin: 10px;padding:10px;" class="container" >
+        <p> الاسم : {{result.name}}</p>
+        <p> لقب : {{result.nickname}}</p>
+        <p> تاريخ الميلا : {{result.date_of_born}}</p>
+        <p> مكان الميلا :  {{result.place_of_born}}</p>
+        <p>
+            وسائل التواصل الاجتماعي : 
+        {% if result.facebook %}
+            <a href="{{result.facebook}}">facebook</a>
+        {% endif %}
+        {% if result.twitter %}
+            <a href="{{result.twitter}}">twitter</a>
+        {% endif %}
+        {% if result.instgram %}
+            <a href="{{result.instgram}}">instgram</a>
+        {% endif %}
+        </p>
+        <p>
+            استمع له عبر : 
+        {% if result.youtube  %}
+        <a href="{{result.youtube}}">youtube</a>
+        {% endif %}
+        {% if result.deezer  %}
+        <a href="{{result.deezer}}">deezer</a>
+        {% endif %}
+        {% if result.spotify  %}
+        <a href="{{result.spotify}}">spotify</a>
+        {% endif %}
+        {% if result.anghami  %}
+        <a href="{{result.anghami}}">anghami</a>
+        {% endif %}
+        </p>
+    </div>
+    <hr>
+    <div class="container">
+        <p style="background-color: antiquewhite;width:30%; padding:5px;" class="h3">نبذه عنه</p>
+        <div style="margin: 10px;">
+            {{result.about_him|safe}}
+        </div>
+    </div>
+
+    {% if result_articals %}
+        <p style="background-color: antiquewhite;width:30%; padding:5px;" class="h3">مقالات عنه</p>
+        {% for i in result_articals %}
+            <a href="{% url 'rapper:v_article' i.pk %}" class="h4" >{{i.title}}</a>
+            <br>
+        {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock%}

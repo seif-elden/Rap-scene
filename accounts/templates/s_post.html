@@ -1,0 +1,80 @@
+{% extends "main.html"%}
+{% load static %}
+
+{% block title%}
+Rap Scene - post
+{% endblock %}
+
+
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/comment.css'%}">
+{% endblock %}
+
+
+{% block body%}
+
+
+<div  dir="rtl" style="margin:30px">
+    <div style="border-right:2px solid #000;padding:10px;">
+        {% if request.user == post.created_by %}
+        <form method="post" style="float: left" >
+            {% csrf_token %}
+            <input type="text" value="{{post.pk}}" style="display: none;" name="del-post">
+            <button type="submit" >delete</button>
+        </form>
+        {% endif %}
+      <p style="size: 10px;">{{post}}</p>
+      <p style="opacity: .5;">{{post.created_dt}}</p>
+      <p class="h1" >{{post.caption}}</p>
+      {% if post.image%}
+      <img src="/media/{{post.image}}" width=300px >
+      {%endif%}
+    </div>
+    <hr >
+
+
+    {% if comment %}
+        <div class="h4"> التعليقات : </div>
+    {% endif %}
+    <br>
+    {% for comment in comment %}
+    	<div class="be-comment" >
+		<div class="be-img-comment" style="float: right;">	
+				<img src="/media/user.png" alt="" class="be-ava-comment">
+		</div>
+		<div class="be-comment-content">
+            <span class="be-comment-name">
+                <p class="h3" style="margin-top: 10px;margin-right:5px;">{{comment.created_by}}</p>
+                </span>
+				<span class="be-comment-time">
+					<i class="fa fa-clock-o"></i>
+					{{comment.created_dt}}
+				</span>
+                {% if request.user == comment.created_by %}
+                <form method="post" style="float: left;" >
+                    {% csrf_token %}
+                    <input type="text" value="{{comment.pk}}" style="display: none;" name="del-com">
+                    <button type="submit" >delete</button>
+                </form>
+                {% endif %}
+			<p class="be-comment-text">
+				{{comment.comment}}
+			</p>
+		</div>
+	</div>
+    {% endfor %}
+    <br>
+    <hr style="margin: auto;width:150px" >
+    <form method="post" dir="ltr" style="margin:auto;width:50%;">
+        {% csrf_token %}
+        {% include 'form.html' %}
+        <button type="submit" class="btn btn-primary btn-block"style="margin-top: 10px;" name="comm">comment</button>
+    </form>
+    <br>
+    <br>
+
+</div>
+
+
+{% endblock %}
+

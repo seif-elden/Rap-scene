@@ -1,0 +1,26 @@
+{% extends "main.html"%}
+{% load static %}
+
+{% block title%}
+Rap Scene - {{result_articals.title}}
+{% endblock %}
+
+
+{% block style%}
+{% endblock %}
+
+{% block body%}
+<div class="container" dir="rtl">
+
+    <img src="/media/{{result_articals.img}}" style="margin:auto;display: block;margin-top:20px;">
+
+    <p class="h2">{{result_articals.title}}</p>
+    <p > <a href="{% url 'rapper:v_rapper' result_articals.rapper.pk %}">{{result_articals.rapper.nickname}}</a> </p>
+    <p style="opacity: 0.5;">
+    كتب في : {{result_articals.created_dt}}
+    </p>
+
+    {{result_articals.article_content | safe}}
+</div>
+
+{%endblock%}

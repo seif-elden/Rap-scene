@@ -1,0 +1,103 @@
+{% extends "main.html"%}
+{% load static %}
+
+{% block title%}
+Rap Scene - chat
+{% endblock %}
+
+
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+{% block body%}
+    <div  style="margin: auto;padding:10px;width:90%;">
+        <div class="row">
+            <h1>{{ request.user }}</h1>
+            <div class="panel panel-info">
+                <div style="background-color: aliceblue;">
+                    <ul id="messages" class="messages">
+                        {% for m in messages %}
+                        
+                            {% if m.author == request.user %}
+                                <li class="message right">
+                            {% else %}
+                                <li class="message left">
+                            {% endif %}
+                                <div class="avatar">{{m.author}}</div>
+                                    <div class="text_wrapper">
+                                        <div class="text">{{m.content}}<br>
+                                            <span class="small" style="width:30px">{{m.timestamp}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                                    
+                        {% endfor %}
+
+                        {# Messages go here #}
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input id="chat-message-input" type="text"class="form-control input" 
+                    placeholder="Type your message here ..." maxlength="500" style="height :50px">
+                    <button class="btn btn-info btn" id="chat-message-submit" >Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let sessionKey = '{{ request.session.session_key }}';
+        let currentUser = '{{ request.user }}';
+        var objDiv = document.getElementById("messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+
+        const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+        );
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            let position = 'left';
+            if (data.author === currentUser) position = 'right';
+            document.querySelector('#messages').innerHTML +=
+                `<li class="message ${position}">
+                    <div class="avatar">${data.author}</div>
+                        <div class="text_wrapper">
+                            <div class="text">${data.message}<br>
+                                <span class="small" style="width:30px">
+                                    now
+                                </span>
+                        </div>
+                    </div>
+                </li>`;    
+                objDiv.scrollTop = objDiv.scrollHeight;
+        };
+
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                "sessionKey":sessionKey,
+            }));
+            messageInputDom.value = '';
+        };
+    </script>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,177 @@
+{% extends "main.html"%}
+{% load static %}
+
+{% block title%}
+Rap Scene
+{% endblock %}
+
+
+{% block style%}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+{% endblock %}
+
+
+{% block body%}
+
+<div class="main container">
+
+    <h1>  The #1 Hip Hop Community in the Middle East </h1>
+    <hr>
+</div>
+
+<div class="container h1 parent" dir="rtl"  >
+
+    <img src="/media/banner.png" class="img-thumbnail" style="width: 100%;">
+    <br>
+    <br>
+    <p style="font-size: 40px; text-align:center;">
+    مرحبا بك في راب سين  
+</p>
+    <br>
+    <p style="font-size: 30px; background-color:aliceblue;padding:10px;" > 
+    منصتك نحو متابعه اخبار الراب في الوطن العربي   ابدأ بالبحث عن الرابر المفضل لك او انقر ع اي من الصور بالاسفل ...
+    </p>
+    <br>
+    <br>
+    <br>
+
+</div>
+
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+          <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+          <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+          <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item text-center active">
+            <img src="/media/3bkry.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/yara.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/lege_nI9LBao.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/maro_IoSqlLm.jpg" class="img-thumbnail" style="width:150px;">
+        </div>
+        <div class="carousel-item text-center">
+            <img src="/media/rappp.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/wegz.jpg" class="img-thumbnail" style="width:150px;height:150px;">
+            <img src="/media/abyusif.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/hook.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+        </div>
+          <div class="carousel-item text-center">
+            <img src="/media/bu.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/rbna yhdah.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/yaqout.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/salek.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+          </div>
+          <div class="carousel-item text-center">
+            <img src="/media/rabi.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/pablo_jRdvzR9.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/shab.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+            <img src="/media/3yota.jpg" class="img-thumbnail" style="width:150px;height:150px;" >
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+
+
+    <br>
+    <br>
+    <hr width="150px;"  style="margin:auto">
+    <br>
+
+
+
+
+
+<div class="h2 vv" style="margin-left: 25px;margin-top:50px">
+    Latest video :
+</div>
+<div id="video" class="video">
+    {# videos go here #}
+</div>
+<br>
+<hr width="150px;"  style="margin:auto">
+
+
+<div class="container contact-form" style="margin-top:50px;width: 80%" >
+    <div class="contact-image">
+        <img src="/media/rapp.png" alt="rocket_contact"/>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <h3 dir="rtl">
+            الحملات الإعلانية من خلال راب سين بتحقق نتائج أقوى 😉💯
+  <br>
+            للإعلان عبر راب سين أو للإعلانات الممولة على يوتيوب تواصل معانا </h3>
+       <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form.name}}
+                </div>
+                <div class="form-group">
+                    {{form.email}}
+                </div>
+                <div class="form-group">
+                    {{form.phone}}
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{form.msg}}
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="h1 container" dir="rtl" > اسئله  
+    <hr>
+<div class="container h4 " dir="rtl" id="who" >
+    <a href="#!">
+    من نحن ؟
+    </a>
+    <div class="container h5" id="an1" style="display: none;" >
+        <br>
+        اكبر قناه خاصه بالراب تهدف لنشر الراب في الشرق الاوسط كله  نغطي جميع الاحداث التي تحدث في مشهد الراب بصوره حياديه دون التحيز لاحد ....
+    </div>
+</div>
+<br>
+<div class="container h4 column" dir="rtl" id="do">
+    <a href="#!">
+        ماذا نفعل ؟
+    </a>
+    <div class="container h5" id="an2" style="display: none;">
+    <br>
+        <ul>
+            <li>تقدم العديد من البرامج علي قناه اليوتيوب</li>
+                <ul>
+                    <li>مراجعه تراكات</li>
+                    <li> مقابلات شارع</li>
+                    <li>فيديوهات تعليم راب</li>
+                    <li>  وغيرها كثير</li>
+                </ul>
+            <li>نشر اخبار الراب ساعه ب ساعه عبر الفيس بوك و الانستجرام</li>
+            <li> حملات اعلانيه ممتازه</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
